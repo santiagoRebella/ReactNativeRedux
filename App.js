@@ -17,14 +17,17 @@ import {
   TextInput,
   ActivityIndicator,
   Picker,
-  Image
+  Image,
+  Button
 } from 'react-native';
 
 const mapStateToProps = (state) => ({
   todos: state.todos,
 })
 
-const App = ({todos}) => {
+const App = ({todos, navigation}) => {
+
+  console.log('dfsSDFDFSDFSDFSDFSDFSFDS');
 
   const [value, onChangeText] = React.useState('Useless Placeholder');
   const [lang, onChangeLang] = React.useState('Useless Placeholder');
@@ -60,7 +63,7 @@ const App = ({todos}) => {
               <Text style={styles.footer}>Engine: Hermes</Text>
             </View>
           )}
-          <View>
+          <View style={{ flex: 1 }}>
             
             <TextInput
               style={{ height: 40, borderColor: 'gray', borderWidth: 1 }}
@@ -90,6 +93,12 @@ const App = ({todos}) => {
               <Image
                 style={{width: 150, height: 150}}
                 source={{uri: 'https://facebook.github.io/react-native/img/tiny_logo.png'}}
+              />
+            </View>
+            <View>
+              <Button
+                title="Go to Details"
+                onPress={() => navigation.navigate('Test')}
               />
             </View>
             
