@@ -1,47 +1,28 @@
-/**
- * @format
- */
-
 import React from 'react';
-import { Provider } from 'react-redux';
+import {Provider} from 'react-redux';
+import {AppRegistry} from 'react-native';
+import {createAppContainer} from 'react-navigation';
+import {createStackNavigator} from 'react-navigation-stack';
 import App from './App';
 import {name as appName} from './app.json';
 import store from './src/store';
-
-import {
-  AppRegistry,
-  View,
-  Text
-} from 'react-native';
-
-import { createAppContainer } from 'react-navigation';
-import { createStackNavigator } from 'react-navigation-stack';
-
-class DetailsScreen extends React.Component {
-  render() {
-    return (
-      <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-        <Text>Details Screen</Text>
-      </View>
-    );
-  }
-}
+import DetailsScreen from './src/screens/Details';
 
 const AppNavigator = createStackNavigator(
   {
     Home: {
-      screen: App
+      screen: App,
     },
     Test: {
-      screen: DetailsScreen
-    }
+      screen: DetailsScreen,
+    },
   },
-  { initialRouteName: 'Home' }
+  {initialRouteName: 'Home'},
 );
 
 const AppContainer = createAppContainer(AppNavigator);
 
-const Root = (props) => (
+const Root = props => (
   <Provider store={store}>
     <AppContainer {...props} />
   </Provider>
