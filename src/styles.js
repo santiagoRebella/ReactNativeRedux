@@ -1,8 +1,34 @@
-import {StyleSheet} from 'react-native';
+import {StyleSheet, YellowBox} from 'react-native';
 
 export default StyleSheet.create({
+  layout: {
+    
+  },
+  container: {
+    justifyContent: "space-evenly",
+    height: '100%',
+  },
+
+  list:{
+    flex: 90,
+    backgroundColor: "yellow",
+    
+  },
+  // item: {
+  //   flex: 1,
+  // },
+  top: {
+    flex: 10,
+    alignContent: "stretch",
+    alignItems: "stretch",
+    justifyContent: "space-evenly"
+  },
+
+
+
   scrollView: {
     backgroundColor: 'white',
+    flex: 1
   },
   engine: {
     position: 'absolute',
