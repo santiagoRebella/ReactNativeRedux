@@ -3,28 +3,62 @@ import {Provider} from 'react-redux';
 import {AppRegistry} from 'react-native';
 import {createAppContainer} from 'react-navigation';
 import {createStackNavigator} from 'react-navigation-stack';
-import App from './App';
+import Home from './src/screens/Home';
 import {name as appName} from './app.json';
-import store from './src/store';
-import DetailsScreen from './src/screens/Details';
+import store from './src/core/store';
+import NavigationService from './src/services/NavigationService';
+import Details from './src/screens/Details';
+import Create from './src/screens/Create';
+import { ThemeProvider } from 'react-native-elements';
+import {screenNames} from './src/core/constants';
 
-const AppNavigator = createStackNavigator(
+const theme = {
+  Button: {
+    raised: true,
+  },
+  Input: {
+    containerStyle: { marginVertical: 10 }
+  }
+};
+console.log(screenNames);
+
+export const AppNavigator = createStackNavigator(
   {
-    Home: {
-      screen: App,
+    [screenNames.HOME]: {
+      screen: Home,
+      navigationOptions: ({ navigation }) => ({
+        header: null,
+      }),
     },
-    Test: {
-      screen: DetailsScreen,
+    [screenNames.DETAILS]: {
+      screen: Details,
+      navigationOptions: ({ navigation }) => ({
+        title: "Task Details",
+        // title: `${navigation.state.params.name}'s Profile'`,
+      }),
+    },
+    [screenNames.CREATE]: {
+      screen: Create,
+      navigationOptions: ({ navigation }) => ({
+        title: "Create Task",
+        // title: `${navigation.state.params.name}'s Profile'`,
+      }),
     },
   },
-  {initialRouteName: 'Home'},
+  {
+    initialRouteName: screenNames.HOME,
+  },
 );
 
 const AppContainer = createAppContainer(AppNavigator);
 
 const Root = props => (
   <Provider store={store}>
-    <AppContainer {...props} />
+    <ThemeProvider theme={theme}>
+      <AppContainer ref={navigatorRef => {
+          NavigationService.setTopLevelNavigator(navigatorRef);
+        }} {...props} />
+    </ThemeProvider>
   </Provider>
 );
 
