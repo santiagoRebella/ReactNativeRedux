@@ -27,7 +27,6 @@ const mapDispatchToProps = dispatch => ({
 });
 
 const Create = ({task, updateTask, saveTask}) => {
-  console.log((task[fields.NAME + '_ERROR'] || task[fields.DESCRIPTION + '_ERROR']));
   return (
       <SafeAreaView style={styles.container}>
         <StatusBar hidden />

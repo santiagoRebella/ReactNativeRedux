@@ -17,10 +17,9 @@ const theme = {
     raised: true,
   },
   Input: {
-    containerStyle: { marginVertical: 10 }
-  }
+    containerStyle: { marginVertical: 10 },
+  },
 };
-console.log(screenNames);
 
 export const AppNavigator = createStackNavigator(
   {

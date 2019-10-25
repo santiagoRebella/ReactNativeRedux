@@ -17,14 +17,12 @@ export const taskReducer = (state = initialTaskState, action) => {
 
   switch (type) {
     case actionTypes.UPDATE_FIELD: {
-      console.log('en el reducer', payload);
       return {
         ...state,
         [payload.field]: payload.data,
       };
     }
     case actionTypes.VALIDATE_FIELD: {
-      console.log('en el VALIDATE_FIELD', payload);
       return {
         ...state,
         [payload.field + '_ERROR']: payload.data,
@@ -48,7 +46,6 @@ export const taskListReducer = (state = initialTaskListState, action) => {
 
   switch (type) {
     case actionTypes.ADD_TASK: {
-      console.log('payload', payload);
       return [payload, ...state];
     }
 

@@ -52,10 +52,9 @@ const Home = ({tasks, changeScreen}) => {
       <View style={styles.list} >
         <FlatList
           data={tasks}
+          keyExtractor={(item) => item[fields.NAME]}
           renderItem={({item}) => (
             <ListItem
-              key={item[fields.NAME]}
-              leftAvatar={{ source: { uri: item.avatar_url } }}
               leftElement={(
                 <Icon
                   name='ac-unit'
