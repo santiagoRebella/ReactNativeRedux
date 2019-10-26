@@ -1,4 +1,4 @@
-import { all, fork, takeLatest, put} from 'redux-saga/effects';
+import { all, fork, takeLatest, put, select} from 'redux-saga/effects';
 import { actionTypes, screenNames } from './constants';
 import actions from './actions';
 
@@ -10,6 +10,13 @@ function* screenChange(action) {
     switch (action.payload.screen) {
       case screenNames.CREATE: {
         yield put(actions.clearTask());
+        break;
+      }
+      case screenNames.DETAILS: {
+        const tasks = yield select(state => state.tasks);
+        const task = tasks.filter(item => item.id === action.payload.data.id)[0];
+        yield put(actions.selectTask(task));
+        break;
       }
     }
     yield NavigationService.navigate(action.payload.screen);
@@ -30,8 +37,16 @@ function* updateTask(action) {
 }
 
 function* saveTask(action) {
+  
   try {
-    yield put(actions.addTask(action.payload));
+    const task = action.payload;
+    if (task.id) {
+      yield put(actions.modifyTask(action.payload));
+    } else {
+      const id = `${new Date().getTime()}`;
+      yield put(actions.addTask({...action.payload, id}));
+    }
+    
     yield NavigationService.navigate(screenNames.HOME);
   }
   catch (error) {
@@ -40,15 +55,15 @@ function* saveTask(action) {
 }
 
 export function* watchScreenChange() {
-  yield takeLatest(actionTypes.SCREEN_CHANGE, screenChange);
+  yield takeLatest(actionTypes.HANDLE_SCREEN_CHANGE, screenChange);
 }
 
 export function* watchUpdateTask() {
-  yield takeLatest(actionTypes.UPDATE_TASK, updateTask);
+  yield takeLatest(actionTypes.HANDLE_UPDATE_TASK, updateTask);
 }
 
 export function* watchSaveTask() {
-  yield takeLatest(actionTypes.SAVE_TASK, saveTask);
+  yield takeLatest(actionTypes.HANDLE_SAVE_TASK, saveTask);
 }
 
 export function* rootSaga () {

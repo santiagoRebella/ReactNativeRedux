@@ -1,20 +1,16 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import styles from '../styles';
+import styles from '../styles/styles';
 import {
   SafeAreaView,
-  ScrollView,
   View,
   StatusBar,
-  TextInput,
-  ActivityIndicator,
-  Picker,
-  Image,
-  FlatList,
 } from 'react-native';  
-import { Text, Button, ListItem, Icon, Divider } from 'react-native-elements';
+import { Button } from 'react-native-elements';
 import actions from '../core/actions';
-import {screenNames, fields} from '../core/constants';
+import { screenNames } from '../core/constants';
+import TaskList from '../components/TaskList';
+import { AddToListIcon } from '../styles/icons';
 
 const mapStateToProps = state => ({
   tasks: state.tasks,
@@ -25,50 +21,22 @@ const mapDispatchToProps = dispatch => ({
 });
 
 const Home = ({tasks, changeScreen}) => {
-
   return (
     <SafeAreaView style={styles.container}>
-      <StatusBar hidden={true} />
+      <StatusBar hidden={true} translucent={true} />
 
       <View style={styles.top}>
         <View style={{alignSelf: "stretch", justifyContent: "center", flex: 1}} >
           <Button
             buttonStyle={{ height: "100%", borderRadius: 0}}
-            icon={
-              <Icon
-                name="add"
-                type="MaterialIcons"
-                size={20}
-                color="white"
-              />
-            }
+            icon={<AddToListIcon />}
             onPress={() => changeScreen(screenNames.CREATE)}
-            
           />
         </View>
-        {/* <Divider style={{ backgroundColor: 'blue', height: 5 }} /> */}
       </View>
     
       <View style={styles.list} >
-        <FlatList
-          data={tasks}
-          keyExtractor={(item) => item[fields.NAME]}
-          renderItem={({item}) => (
-            <ListItem
-              leftElement={(
-                <Icon
-                  name='ac-unit'
-                  type='MaterialIcons'
-                  color='#517fa4'
-                />
-              )}
-              title={item[fields.NAME]}
-              subtitle={item[fields.DESCRIPTION]}
-              bottomDivider
-              onPress={(el) => changeScreen(screenNames.DETAILS, item) }
-            />
-          )}
-        />
+        <TaskList tasks={tasks} changeScreen={changeScreen} />
       </View>
         
     </SafeAreaView>

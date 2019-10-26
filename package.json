@@ -22,7 +22,8 @@
     "react-navigation-stack": "^1.9.4",
     "react-redux": "^7.1.1",
     "redux": "^4.0.4",
-    "redux-saga": "^1.1.1"
+    "redux-saga": "^1.1.1",
+    "rne-modal-tooltip": "gist:b28c003d87c619674def0878473338a0"
   },
   "devDependencies": {
     "@babel/core": "7.6.4",
