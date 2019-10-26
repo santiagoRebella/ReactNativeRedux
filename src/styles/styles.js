@@ -1,5 +1,18 @@
 import {StyleSheet, YellowBox} from 'react-native';
 
+export const theme = {
+  Button: {
+    raised: true,
+  },
+  Input: {
+    containerStyle: { marginVertical: 10 },
+  },
+};
+
+export const layout = {
+
+};
+
 export default StyleSheet.create({
   layout: {
     
@@ -11,7 +24,7 @@ export default StyleSheet.create({
 
   list:{
     flex: 90,
-    backgroundColor: "yellow",
+    backgroundColor: "whitesmoke",
     
   },
   // item: {

@@ -2,14 +2,20 @@ import { combineReducers } from 'redux';
 import { actionTypes, fields } from './constants';
 
 const initialTaskState = {
+  id: '',
+  editMode: false,
   [fields.NAME]: '',
   [fields.DESCRIPTION]: '',
   [fields.PRIORITY]: 0,
   [fields.NAME + '_ERROR']: '',
   [fields.DESCRIPTION + '_ERROR']: '',
+  [fields.DIFFICULTY]: '',
+  [fields.AVOIDABLE]: false,
+  [fields.HOLD]: false,
+  [fields.REMOVE]: false,
+  [fields.DONE]: false,
+
 };
-
-
 
 export const taskReducer = (state = initialTaskState, action) => {
 
@@ -31,7 +37,15 @@ export const taskReducer = (state = initialTaskState, action) => {
     case actionTypes.CLEAR_TASK: {
       return initialTaskState;
     }
-    
+    case actionTypes.TOGGLE_EDIT_MODE: {
+      return {
+        ...state,
+        editMode: !state.editMode,
+      };
+    }
+    case actionTypes.SELECT_TASK: {
+      return {...payload, editMode: false};
+    }
   }
 
   return state;
@@ -40,19 +54,24 @@ export const taskReducer = (state = initialTaskState, action) => {
 const initialTaskListState = [];
 
 export const taskListReducer = (state = initialTaskListState, action) => {
-  const {todos} = state;
   const {type, payload} = action;
   
 
   switch (type) {
     case actionTypes.ADD_TASK: {
-      return [payload, ...state];
+      return [ payload, ...state ];
     }
+    case actionTypes.MODIFY_TASK: {
+      const tasks = state.map(item => item.id === payload.id ? payload : item);
+      return tasks;
+    }
+
+    
 
     case 'REMOVE': {
       return {
         ...state,
-        todos: todos.filter((todo, i) => i !== payload),
+        todos: [].filter((todo, i) => i !== payload),
       };
     }
   }
@@ -60,8 +79,6 @@ export const taskListReducer = (state = initialTaskListState, action) => {
   return state;
 };
 
-
-// Redux: Root Reducer
 const rootReducer = combineReducers({
   task: taskReducer,
   tasks: taskListReducer,

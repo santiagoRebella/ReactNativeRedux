@@ -9,17 +9,10 @@ import store from './src/core/store';
 import NavigationService from './src/services/NavigationService';
 import Details from './src/screens/Details';
 import Create from './src/screens/Create';
-import { ThemeProvider } from 'react-native-elements';
-import {screenNames} from './src/core/constants';
-
-const theme = {
-  Button: {
-    raised: true,
-  },
-  Input: {
-    containerStyle: { marginVertical: 10 },
-  },
-};
+import { ThemeProvider, Button } from 'react-native-elements';
+import { screenNames } from './src/core/constants';
+import { theme } from './src/styles/styles';
+import EditButton from './src/components/EditButton';
 
 export const AppNavigator = createStackNavigator(
   {
@@ -34,6 +27,7 @@ export const AppNavigator = createStackNavigator(
       navigationOptions: ({ navigation }) => ({
         title: "Task Details",
         // title: `${navigation.state.params.name}'s Profile'`,
+        headerRight: ( <EditButton /> ),
       }),
     },
     [screenNames.CREATE]: {
