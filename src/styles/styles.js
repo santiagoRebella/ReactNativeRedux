@@ -67,8 +67,7 @@ export const theme = {
     marginVertical: 20,
   },
   DoneRow: {
-    backgroundColor: palette.success,
-    opacity: 0.3,
+    backgroundColor: palette.secondary,
   },
   errorColor: { color: palette.danger },
   LockButtonContainer: {
