@@ -61,6 +61,10 @@ export const taskListReducer = (state = initialTaskListState, action) => {
 
   switch (type) {
 
+    case actionTypes.INIT_STATE: {
+      return JSON.parse(payload);
+    }
+
     case actionTypes.ADD_TASK: {
       return [ payload, ...state ];
     }
