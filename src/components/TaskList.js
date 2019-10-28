@@ -4,6 +4,7 @@ import { Text, ListItem } from 'react-native-elements';
 import Tooltip from 'rne-modal-tooltip';
 import {screenNames, fields} from '../core/constants';
 import { PriorityLowIcon, PriorityMediumIcon, PriorityHighIcon, CoffeeIcon, PauseIcon } from '../styles/icons';
+import { theme } from '../styles/styles';
 
 const priorityIconsArray = [
   (
@@ -34,6 +35,7 @@ const TaskList = ({tasks, changeScreen}) => {
           title={item[fields.NAME]}
           subtitle={item[fields.DESCRIPTION]}
           bottomDivider
+          containerStyle={item[fields.DONE] ? theme.DoneRow : {}}
           onPress={(el) => changeScreen(screenNames.DETAILS, item) }
           badge={item[fields.DIFFICULTY] ? ({
             value: item[fields.DIFFICULTY],

@@ -1,14 +1,12 @@
 import React from 'react';
-import {connect} from 'react-redux';
-import styles from '../styles/styles';
 import {
   SafeAreaView,
   StatusBar,
 } from 'react-native';
+import { connect } from 'react-redux';
 import actions from '../core/actions';
-
+import { theme } from '../styles/styles';
 import Task from '../components/Task';
-import CreateFooter from '../components/CreateFooter';
 
 const mapStateToProps = state => ({
   task: state.task,
@@ -16,16 +14,20 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   updateTask: (field, data) => dispatch(actions.updateTask(field, data)),
-  saveTask: (task) => dispatch(actions.saveTask(task)),
+  saveChanges: (task) => dispatch(actions.saveChanges(task)),
 });
 
-const Create = ({task, updateTask, saveTask}) => {
+const Create = ({task, updateTask, saveChanges}) => {
   return (
-      <SafeAreaView style={styles.container}>
-        <StatusBar hidden />
-        <Task task={task} updateTask={updateTask} saveTask={saveTask} />
-        <CreateFooter task={task} saveTask={saveTask} />
-      </SafeAreaView>
+    <SafeAreaView style={theme.layout.task.container}>
+      <StatusBar hidden />
+      <Task
+        task={task}
+        updateTask={updateTask}
+        saveChanges={saveChanges}
+        footer="create"
+      />
+    </SafeAreaView>
   );
 };
 

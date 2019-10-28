@@ -9,7 +9,7 @@ import store from './src/core/store';
 import NavigationService from './src/services/NavigationService';
 import Details from './src/screens/Details';
 import Create from './src/screens/Create';
-import { ThemeProvider, Button } from 'react-native-elements';
+import { ThemeProvider } from 'react-native-elements';
 import { screenNames } from './src/core/constants';
 import { theme } from './src/styles/styles';
 import EditButton from './src/components/EditButton';
@@ -17,24 +17,23 @@ import EditButton from './src/components/EditButton';
 export const AppNavigator = createStackNavigator(
   {
     [screenNames.HOME]: {
-      screen: Home,
+      screen: () => (<ThemeProvider theme={theme}><Home /></ThemeProvider>),
       navigationOptions: ({ navigation }) => ({
         header: null,
       }),
     },
     [screenNames.DETAILS]: {
-      screen: Details,
+      screen: () => (<ThemeProvider theme={theme}><Details /></ThemeProvider>),
       navigationOptions: ({ navigation }) => ({
-        title: "Task Details",
+        title: 'Task',
         // title: `${navigation.state.params.name}'s Profile'`,
-        headerRight: ( <EditButton /> ),
+        headerRight: (<EditButton />),
       }),
     },
     [screenNames.CREATE]: {
-      screen: Create,
+      screen: () => (<ThemeProvider theme={theme}><Create /></ThemeProvider>),
       navigationOptions: ({ navigation }) => ({
-        title: "Create Task",
-        // title: `${navigation.state.params.name}'s Profile'`,
+        title: 'Create Task',
       }),
     },
   },
@@ -47,11 +46,11 @@ const AppContainer = createAppContainer(AppNavigator);
 
 const Root = props => (
   <Provider store={store}>
-    <ThemeProvider theme={theme}>
-      <AppContainer ref={navigatorRef => {
-          NavigationService.setTopLevelNavigator(navigatorRef);
-        }} {...props} />
-    </ThemeProvider>
+    <AppContainer
+      ref={ navigatorRef => {
+        NavigationService.setTopLevelNavigator(navigatorRef);
+      }} {...props}
+    />
   </Provider>
 );
 
