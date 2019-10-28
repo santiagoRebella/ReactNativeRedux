@@ -3,7 +3,22 @@ import { actionTypes, screenNames, fields } from './constants';
 import actions from './actions';
 
 import NavigationService from '../services/NavigationService';
+import { getData, storeData } from '../services/storage';
 import { validate } from '../utilities/validation';
+
+function* initState() {
+  try {
+    const storedState = yield getData();
+
+    if (storedState) {
+      yield put(actions.initState(storedState));
+    }
+
+  }
+  catch (error) {
+    console.log(error);
+  }
+}
 
 function* screenChange(action) {
   try {
@@ -50,11 +65,18 @@ function* saveChanges(action) {
       yield put(actions.addTask({...action.payload, id}));
     }
 
+    const tasks = yield select(state => state.tasks);
+    yield storeData(JSON.stringify(tasks));
+
     yield NavigationService.navigate(screenNames.HOME);
   }
   catch (error) {
     console.log(error);
   }
+}
+
+export function* watchInitState() {
+  yield takeLatest(actionTypes.HANDLE_INIT, initState);
 }
 
 export function* watchScreenChange() {
@@ -71,6 +93,7 @@ export function* watchSaveChanges() {
 
 export function* rootSaga () {
   yield all([
+    fork(watchInitState),
     fork(watchScreenChange),
     fork(watchUpdateTask),
     fork(watchSaveChanges),

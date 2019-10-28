@@ -1,12 +1,8 @@
 import { actionTypes } from './constants';
 
 export default {
-  add: item => {
-    return {type: actionTypes.ADD, payload: item};
-  },
-  remove: index => {
-    return {type: actionTypes.REMOVE, payload: index};
-  },
+  initApp: () => ({type: actionTypes.HANDLE_INIT}),
+  initState: (store) => ({type: actionTypes.INIT_STATE, payload: store}),
   changeScreen: (screen, data) => ({type: actionTypes.HANDLE_SCREEN_CHANGE, payload: {screen, data}}),
   updateTask: (field, data) => ({type: actionTypes.HANDLE_UPDATE_TASK, payload: {field, data}}),
   updateField: (payload) => ({type: actionTypes.UPDATE_FIELD, payload}),
