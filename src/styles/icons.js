@@ -55,3 +55,21 @@ export const AddIcon = () => (
     color="white"
   />
 );
+
+export const ClosedLockIcon = () => (
+  <Icon
+    name="lock"
+    type="material-community"
+    size={20}
+    color="white"
+  />
+);
+
+export const OpenLockIcon = () => (
+  <Icon
+    name="lock-open"
+    type="material-community"
+    size={20}
+    color="white"
+  />
+);

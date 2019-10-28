@@ -1,79 +1,81 @@
-import {StyleSheet, YellowBox} from 'react-native';
+const palette = {
+  primary: '#2589BD',
+  secondary: '#C6CCB2',
+  success: '#4B7F52',
+  danger: '#E55934',
+  warning: '#FABC3C',
+};
 
 export const theme = {
+  colors: palette,
+  layout: {
+    home: {
+      container: {
+        justifyContent: 'space-between',
+        flex: 1,
+      },
+      list: {
+        flexGrow: 1,
+        backgroundColor: 'whitesmoke',
+      },
+    },
+    task: {
+      container: {
+        justifyContent: 'flex-end',
+        flexDirection: 'column',
+        flex: 1,
+      },
+      scrollViewContainer: {
+        flexGrow: 1,
+        alignContent: 'space-between',
+      },
+      rowContainer: {
+        flexDirection: 'row',
+      },
+      buttonGroupContainer: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'space-around',
+      },
+      radioGroupContainer: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'space-around',
+      },
+      checkBoxContainer: {
+        alignContent: 'center',
+        justifyContent: 'space-around',
+        flexDirection: 'row',
+      },
+      footer: { justifyContent: 'flex-end', flexGrow: 1 },
+    },
+  },
+  label: {
+    padding: 10,
+  },
+  ActionButton: {
+    borderRadius: 0,
+    paddingVertical: 20,
+  },
   Button: {
     raised: true,
   },
-  Input: {
-    containerStyle: { marginVertical: 10 },
+  Divider: {
+    style: { marginVertical: 8, backgroundColor: 'transparent' },
   },
+  bigDivider: {
+    marginVertical: 20,
+  },
+  DoneRow: {
+    backgroundColor: palette.success,
+    opacity: 0.3,
+  },
+  errorColor: { color: palette.danger },
+  LockButtonContainer: {
+    backgroundColor: palette.secondary,
+    marginHorizontal: 10,
+  },
+  Input: {},
+  CheckBox: {},
+  ButtonGroup: {},
 };
-
-export const layout = {
-
-};
-
-export default StyleSheet.create({
-  layout: {
-    
-  },
-  container: {
-    justifyContent: "space-evenly",
-    height: '100%',
-  },
-
-  list:{
-    flex: 90,
-    backgroundColor: "whitesmoke",
-    
-  },
-  // item: {
-  //   flex: 1,
-  // },
-  top: {
-    flex: 10,
-    alignContent: "stretch",
-    alignItems: "stretch",
-    justifyContent: "space-evenly"
-  },
-
-
-
-  scrollView: {
-    backgroundColor: 'white',
-    flex: 1
-  },
-  engine: {
-    position: 'absolute',
-    right: 0,
-  },
-  body: {
-    backgroundColor: 'red',
-  },
-  sectionContainer: {
-    marginTop: 32,
-    paddingHorizontal: 24,
-  },
-  sectionTitle: {
-    fontSize: 24,
-    fontWeight: '600',
-    color: 'black',
-  },
-  sectionDescription: {
-    marginTop: 8,
-    fontSize: 18,
-    fontWeight: '400',
-    color: 'brown',
-  },
-  highlight: {
-    fontWeight: '700',
-  },
-  footer: {
-    color: 'green',
-    fontSize: 12,
-    fontWeight: '600',
-    padding: 4,
-    paddingRight: 12,
-    textAlign: 'right',
-  },
-});

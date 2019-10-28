@@ -1,5 +1,5 @@
 import { all, fork, takeLatest, put, select} from 'redux-saga/effects';
-import { actionTypes, screenNames } from './constants';
+import { actionTypes, screenNames, fields } from './constants';
 import actions from './actions';
 
 import NavigationService from '../services/NavigationService';
@@ -36,17 +36,20 @@ function* updateTask(action) {
   }
 }
 
-function* saveTask(action) {
-  
+function* saveChanges(action) {
   try {
     const task = action.payload;
-    if (task.id) {
+
+    if (task[fields.REMOVE]) {
+      yield put(actions.removeTask(action.payload));
+    }
+    else if (task.id) {
       yield put(actions.modifyTask(action.payload));
     } else {
       const id = `${new Date().getTime()}`;
       yield put(actions.addTask({...action.payload, id}));
     }
-    
+
     yield NavigationService.navigate(screenNames.HOME);
   }
   catch (error) {
@@ -62,14 +65,14 @@ export function* watchUpdateTask() {
   yield takeLatest(actionTypes.HANDLE_UPDATE_TASK, updateTask);
 }
 
-export function* watchSaveTask() {
-  yield takeLatest(actionTypes.HANDLE_SAVE_TASK, saveTask);
+export function* watchSaveChanges() {
+  yield takeLatest(actionTypes.HANDLE_SAVE_CHANGES, saveChanges);
 }
 
 export function* rootSaga () {
   yield all([
     fork(watchScreenChange),
     fork(watchUpdateTask),
-    fork(watchSaveTask),
+    fork(watchSaveChanges),
   ]);
 }
