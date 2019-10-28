@@ -37,6 +37,9 @@ export const theme = {
         alignItems: 'center',
         justifyContent: 'space-around',
       },
+      buttonGroupWrapper: {
+        flexGrow: 1,
+      },
       radioGroupContainer: {
         flexDirection: 'row',
         alignItems: 'center',

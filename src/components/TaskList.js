@@ -1,5 +1,5 @@
 import React from 'react';
-import { FlatList } from 'react-native';  
+import { FlatList } from 'react-native';
 import { Text, ListItem } from 'react-native-elements';
 import Tooltip from 'rne-modal-tooltip';
 import {screenNames, fields} from '../core/constants';

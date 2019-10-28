@@ -42,7 +42,7 @@ const Task = ({task, saveChanges, updateTask, disableAll, footer}) => {
 
       <View style={theme.layout.task.buttonGroupContainer}>
         <Text style={theme.label}>Priority</Text>
-        <View style={{flexGrow: 1}} >
+        <View style={theme.layout.task.buttonGroupWrapper} >
           <ButtonGroup
             onPress={(index) => updateTask(fields.PRIORITY, index)}
             selectedIndex={task[fields.PRIORITY]}
@@ -56,7 +56,7 @@ const Task = ({task, saveChanges, updateTask, disableAll, footer}) => {
 
       <View style={theme.layout.task.radioGroupContainer}>
         <Text style={theme.label}>Difficulty</Text>
-        
+
         <CheckBox
           center
           title="easy"
