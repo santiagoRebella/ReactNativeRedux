@@ -6,7 +6,11 @@ import { fields } from '../core/constants';
 import { AddIcon } from '../styles/icons';
 
 const TaskFormEditButtons = ({footerType, task, updateTask, saveChanges}) => {
-  const colorState = task[fields.REMOVE] ? theme.colors.danger : (task[fields.DONE] ? theme.colors.success : theme.colors.primary);
+
+  const colorState = task[fields.REMOVE] ?
+    theme.colors.danger :
+    (task[fields.DONE] ? theme.colors.success : theme.colors.primary);
+
   const isDisabled = (
     !task[fields.NAME] ||
     task[fields.NAME + '_ERROR'] ||
