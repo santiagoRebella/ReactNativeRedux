@@ -44,14 +44,15 @@ export const theme = {
       },
       checkBoxContainer: {
         alignContent: 'center',
-        justifyContent: 'space-around',
+        justifyContent: 'center',
         flexDirection: 'row',
       },
       footer: { justifyContent: 'flex-end', flexGrow: 1 },
     },
   },
   label: {
-    padding: 10,
+    paddingLeft: 10,
+    fontWeight: 'bold',
   },
   ActionButton: {
     borderRadius: 0,
