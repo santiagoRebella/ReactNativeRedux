@@ -1,34 +1,25 @@
 import React from 'react';
-import { Icon } from 'react-native-elements';
+import {Icon} from 'react-native-elements';
 
-export const PriorityLowIcon = () => (
+export const CheckmarkIcon = () => (
   <Icon
-    name="priority-low"
+    name="checkbox-marked-circle-outline"
     type="material-community"
-    color="gold"
+    color="green"
   />
+);
+export const PriorityLowIcon = () => (
+  <Icon name="priority-low" type="material-community" color="gold" />
 );
 export const PriorityMediumIcon = () => (
-  <Icon
-    name="clear-all"
-    type="material"
-    color="darkorange"
-  />
+  <Icon name="clear-all" type="material" color="darkorange" />
 );
 export const PriorityHighIcon = () => (
-  <Icon
-    name="priority-high"
-    type="material-community"
-    color="red"
-  />
+  <Icon name="priority-high" type="material-community" color="red" />
 );
 
 export const CoffeeIcon = () => (
-  <Icon
-    name="rest"
-    type="antdesign"
-    color="steelblue"
-  />
+  <Icon name="rest" type="antdesign" color="steelblue" />
 );
 
 export const PauseIcon = () => (
@@ -40,36 +31,17 @@ export const PauseIcon = () => (
 );
 
 export const AddToListIcon = () => (
-  <Icon
-    name="add-to-list"
-    type="entypo"
-    color="white"
-  />
+  <Icon name="add-to-list" type="entypo" color="white" />
 );
 
 export const AddIcon = () => (
-  <Icon
-    name="add"
-    type="material"
-    size={20}
-    color="white"
-  />
+  <Icon name="add" type="material" size={20} color="white" />
 );
 
 export const ClosedLockIcon = () => (
-  <Icon
-    name="lock"
-    type="material-community"
-    size={20}
-    color="white"
-  />
+  <Icon name="lock" type="material-community" size={20} color="white" />
 );
 
 export const OpenLockIcon = () => (
-  <Icon
-    name="lock-open"
-    type="material-community"
-    size={20}
-    color="white"
-  />
+  <Icon name="lock-open" type="material-community" size={20} color="white" />
 );
