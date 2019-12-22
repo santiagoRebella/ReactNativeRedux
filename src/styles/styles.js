@@ -50,7 +50,7 @@ export const theme = {
         justifyContent: 'center',
         flexDirection: 'row',
       },
-      footer: { justifyContent: 'flex-end', flexGrow: 1 },
+      footer: {justifyContent: 'flex-end', flexGrow: 1},
     },
   },
   label: {
@@ -65,15 +65,12 @@ export const theme = {
     raised: true,
   },
   Divider: {
-    style: { marginVertical: 8, backgroundColor: 'transparent' },
+    style: {marginVertical: 8, backgroundColor: 'transparent'},
   },
   bigDivider: {
     marginVertical: 20,
   },
-  DoneRow: {
-    backgroundColor: palette.secondary,
-  },
-  errorColor: { color: palette.danger },
+  errorColor: {color: palette.danger},
   LockButtonContainer: {
     backgroundColor: palette.secondary,
     marginHorizontal: 10,
